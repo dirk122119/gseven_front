@@ -10,7 +10,7 @@ import { getCookie } from "../lib/cookie"
 import BasicSelect from '../components/BasicSelect';
 import {CookieContext} from "../layout"
 export default function Item() {
-    const [cookie, setCookie] = React.useContext(CookieContext);
+    const {cookie, setCookie} = React.useContext(CookieContext);
 
     return (
         <Container component="main" maxWidth="lg">

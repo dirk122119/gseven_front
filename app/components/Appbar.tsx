@@ -23,7 +23,7 @@ import {getCookie} from "../lib/cookie"
 
 export default function Appbar() {
 
-    const [id, setId] = React.useContext(UserContext)
+    const {id, setId} = React.useContext(UserContext)
 
     if (typeof window !== 'undefined') {
         let cookieValue = getCookie("access_token");

@@ -16,8 +16,18 @@ import { getCookie } from "./lib/cookie"
 //   }
 // }
 
-export const UserContext = createContext();
-export const CookieContext = createContext();
+export type GlobalUserContext = {
+  id: string
+  setId:(c: string) => void
+}
+
+export type GlobalCookieContext = {
+  cookie: string
+  setCookie:(c: string) => void
+}
+
+export const UserContext = createContext<GlobalUserContext>({id:"",setId:()=>{}});
+export const CookieContext = createContext<GlobalCookieContext>({cookie:"",setCookie:()=>{}});
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
   const [id, setId] = React.useState("");
@@ -58,8 +68,8 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserContext.Provider value={[id, setId]}>
-          <CookieContext.Provider value={[cookie, setCookie]}>
+        <UserContext.Provider value={{id, setId}}>
+          <CookieContext.Provider value={{cookie, setCookie}}>
           <Appbar />
           {children}
           </CookieContext.Provider>

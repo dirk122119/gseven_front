@@ -9,27 +9,18 @@ import BasicTable from './Basictable';
 interface Props {
     token: string
 }
-interface Data {
-    content: string;
-}
 
-interface Items{
-    ITEM_CATA:string;
-    ITEM_DESC:string;
-    ITEM_ID:string;
-    ITEM_MODEL:string;
-    ITEM_PRICE:number;
-}
 
 
 export default function BasicSelect(props: Props) {
     const [catagory, setCatagory] = React.useState("0");
-    const [catagories, setCatagories] = React.useState<Array<Items>>([]);
-    const [items,setItems]= React.useState<Array<Data>>([]);
+    const [catagories, setCatagories] = React.useState([]);
+    const [items,setItems]= React.useState([]);
     const handleChange = (event: SelectChangeEvent) => {
         setCatagory(event.target.value as string);
-        if(event.target.value-1>=0){
-            getItemsByCatagory(catagories[event.target.value-1])
+        let index:number=Number(event.target.value)
+        if(index-1>=0){
+            getItemsByCatagory(catagories[index-1])
         }
         
     };
