@@ -18,6 +18,7 @@ export default function BasicSelect(props: Props) {
     const [catagories, setCatagories] = React.useState([]);
     const [items,setItems]= React.useState([]);
     const [message, setMessage] = React.useState('');
+    const [resultMessage,setResultMessage] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
         setCatagory(event.target.value as string);
@@ -61,6 +62,9 @@ export default function BasicSelect(props: Props) {
             .then(response => response.json())
             .then(result => {
                 setItems(result)
+                if(result["detail"]=="Item not found"){
+                    setResultMessage("找不到商品")
+                }
             }
                 )
             .catch(error => console.log('error', error));
@@ -77,7 +81,12 @@ export default function BasicSelect(props: Props) {
         };
         await fetch(`https://35.76.111.9/items/search/item_cata?cata=${value}`, getRequestOptions)
             .then(response => response.json())
-            .then(result => setItems(result))
+            .then(result => {
+                setItems(result)
+                if(result["detail"]=="Item not found"){
+                    setResultMessage("找不到商品")
+                }
+            })
             .catch(error => console.log('error', error));
     }
 
@@ -91,7 +100,12 @@ export default function BasicSelect(props: Props) {
         };
         await fetch(`https://35.76.111.9/items/search?item=${value}`, getRequestOptions)
             .then(response => response.json())
-            .then(result => setItems(result))
+            .then(result => {
+                setItems(result)
+                if(result["detail"]=="Item not found"){
+                    setResultMessage("找不到商品")
+                }
+            })
             .catch(error => console.log('error', error));
     }
 
@@ -106,8 +120,10 @@ export default function BasicSelect(props: Props) {
       };
 
     React.useEffect(() => {
+        if(props.token){
         getCatagories();
         getAllItems();
+    }
       }, [props.token]);
 
 
@@ -138,7 +154,7 @@ export default function BasicSelect(props: Props) {
         <Box sx={{paddingTop:"50px"}}>
             <BasicTable items={items}/>
         </Box>
-        :<h1>找不到相關商品</h1>
+        :<h1>{resultMessage}</h1>
         }
         </>
     );
