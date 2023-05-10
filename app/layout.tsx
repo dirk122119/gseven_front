@@ -41,7 +41,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
       method: 'GET',
       headers: myHeaders,
     };
-    let result = fetch("http://35.76.111.9/users/info", requestOptions)
+    let result = fetch("https://35.76.111.9/users/info", requestOptions)
       .then(response => response.json())
       .then(result => setId(result["user_id"]))
       .catch(error => console.log('error', error));

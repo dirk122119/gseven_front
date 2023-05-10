@@ -55,7 +55,7 @@ export default function SignIn() {
       method: 'POST',
       body: formdata,
     };
-    fetch("http://35.76.111.9/token", requestOptions)
+    fetch("https://35.76.111.9/token", requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result["access_token"])
@@ -70,7 +70,7 @@ export default function SignIn() {
       method: 'GET',
       headers: myHeaders,
     };
-    let result = fetch("http://35.76.111.9/users/info", getRequestOptions)
+    let result = fetch("https://35.76.111.9/users/info", getRequestOptions)
       .then(response => response.json())
       .then(result => {setId(result["user_id"])
       window.location.href = '/items'})

@@ -32,7 +32,7 @@ export default function BasicSelect(props: Props) {
             method: 'GET',
             headers: myHeaders,
         };
-       await fetch("http://35.76.111.9/items/catagories", getRequestOptions)
+       await fetch("https://35.76.111.9/items/catagories", getRequestOptions)
             .then(response => response.json())
             .then(result => {
                 setCatagories(result)
@@ -50,7 +50,7 @@ export default function BasicSelect(props: Props) {
             method: 'GET',
             headers: myHeaders,
         };
-        await fetch("http://35.76.111.9/items", getRequestOptions)
+        await fetch("https://35.76.111.9/items", getRequestOptions)
             .then(response => response.json())
             .then(result => {
                 setItems(result)
@@ -68,7 +68,7 @@ export default function BasicSelect(props: Props) {
             method: 'GET',
             headers: myHeaders,
         };
-        await fetch(`http://35.76.111.9/items/search/item_cata?cata=${value}`, getRequestOptions)
+        await fetch(`https://35.76.111.9/items/search/item_cata?cata=${value}`, getRequestOptions)
             .then(response => response.json())
             .then(result => setItems(result))
             .catch(error => console.log('error', error));
