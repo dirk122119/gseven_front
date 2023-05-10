@@ -38,6 +38,9 @@ export default function SignIn() {
   const {id, setId} = React.useContext(UserContext)
 
 
+  if(id){
+    window.location.href = '/items'
+  }
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -73,7 +76,9 @@ export default function SignIn() {
     let result = fetch("https://35.76.111.9/users/info", getRequestOptions)
       .then(response => response.json())
       .then(result => {setId(result["user_id"])
-      window.location.href = '/items'})
+      window.location.href = '/items'
+    }
+    )
       .catch(error => console.log('error', error));
   };
 
