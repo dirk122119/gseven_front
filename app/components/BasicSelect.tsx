@@ -25,9 +25,11 @@ export default function BasicSelect(props: Props) {
         let index:number=Number(event.target.value)
         if(index-1>=0){
             getItemsByCatagory(catagories[index-1])
+            setMessage("")
         }
         else{
             getAllItems()
+            setMessage("")
         }
         
     };
@@ -112,6 +114,7 @@ export default function BasicSelect(props: Props) {
     const handleKeyPress=(data: any) => {
         if (data.charCode === 13) {
             getItemsBySearch(message)
+            setCatagory("0")
         }
       }
 
@@ -147,7 +150,7 @@ export default function BasicSelect(props: Props) {
                 </Select>
             </FormControl>
 
-            <TextField id="outlined-basic" label="Search" variant="outlined" onKeyPress={handleKeyPress} onChange={handleTextfieldChange}/>
+            <TextField id="outlined-basic" label="Search" variant="outlined" onKeyPress={handleKeyPress} onChange={handleTextfieldChange} value={message}/>
         </Box>
        {  items.length>0
        ?
